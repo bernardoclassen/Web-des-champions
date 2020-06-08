@@ -40,3 +40,26 @@ def get_coords(pays):
 for i in range(len(pays)):
     a=get_coords(pays[i])
     print('capital:', a)
+
+
+# ouverture d'une connexion avec la base de données
+conn = sqlite3.connect('countries.db')
+zw = 'United_States.json' 
+
+# les infos à enregistrer
+name = get_name(zw)
+capital = get_capital(zw)
+coords = get_coords(zw)
+
+wp = 3
+# à changer à chaque fois pour chaque pays c'est unique 
+# préparation de la commande SQL
+c = conn.cursor()
+sql = 'INSERT INTO countries VALUES (:wp,:name,:capital,:latitude,:longitude)'
+#{"wp" : "olivier", "name" : name, "capital":capital,"latitude":coords[0],"longitude":coords[1]}
+
+
+
+# soumission de la commande (noter que le second argument est un tuple)
+c.execute(sql,(wp ,name, capital, coords[0],coords[1]))
+conn.commit()
