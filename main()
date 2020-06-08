@@ -1,12 +1,42 @@
-#
-# import du module d'accès à la base de données
-#
-import sqlite3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jun  8 10:13:38 2020
 
-#
-# Ouverture d'une connexion avec la base de données
-#
-conn = sqlite3.connect('pays.sqlite')
+@author: berna
+"""
+list_pays=[]
+from zipfile import ZipFile
+import json
 
-def get_info(pays)
-  
+with ZipFile('north_america.zip','r') as z:
+    # liste des documents contenus dans le fichier zip
+    pays=z.namelist()
+
+def get_name(pays, indice): #example: 'Canada.json'
+    with ZipFile('north_america.zip','r') as z:
+        info = json.loads(z.read(pays))
+        if indice == 9:
+            return info['common_name'];
+        return info['conventional_long_name'];
+def get_capital(pays):
+    with ZipFile('north_america.zip','r') as z:
+        info = json.loads(z.read(pays))
+        a = info['capital'];
+        b=''
+        for i in range(len(a)):
+            if (a[i]) != '[' and (a[i]) != ']' and (a[i]) != '{':
+                if (a[i]) == ',':
+                    return b;
+                b=b+a[i]
+        return b;
+def get_coords(pays):
+    with ZipFile('north_america.zip','r') as z:
+        info = json.loads(z.read(pays))
+        a=info['coordinates']
+        coord_N=a[8]+a[9]+'.'+ a[11]+a[12]
+        coord_W=a[16]+a[17]+','+ a[19]+a[20]
+        return coord_N, coord_W;
+
+for i in range(len(pays)):
+    a=get_coords(pays[i])
+    print('capital:', a)
