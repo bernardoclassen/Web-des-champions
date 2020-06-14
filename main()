@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun  8 10:13:38 2020
 
-@author: berna
 """
 list_pays=[]
 from zipfile import ZipFile
