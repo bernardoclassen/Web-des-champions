@@ -18,6 +18,7 @@ def get_name(pays, indice): #example: 'Canada.json'
         if indice == 9:
             return info['common_name'];
         return info['conventional_long_name'];
+
 def get_capital(pays):
     with ZipFile('north_america.zip','r') as z:
         info = json.loads(z.read(pays))
@@ -29,6 +30,7 @@ def get_capital(pays):
                     return b;
                 b=b+a[i]
         return b;
+
 def get_coords(pays):
     with ZipFile('north_america.zip','r') as z:
         info = json.loads(z.read(pays))
