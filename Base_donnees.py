@@ -252,7 +252,7 @@ def save_country(conn,country,info):
     coords = get_coords(info)
     flag = get_flag(country)
     continent = 'Amérique du nord'
-    c.execute(sql,(country,name,capital,coords['lat'],coords['lon'],continent,flag))
+    c.execute(sql,(country,name,capital,coords['lat'],coords['lon'],flag,continent))
     conn.commit()
     
 
