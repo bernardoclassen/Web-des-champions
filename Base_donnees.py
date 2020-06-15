@@ -241,7 +241,7 @@ def save_country(conn,country,info):
     
     # présentation de la commande SQL :
     c = conn.cursor()
-    sql = 'INSERT OR REPLACE INTO countries VALUES (?, ?, ?, ?, ?,? )'
+    sql = 'INSERT OR REPLACE INTO countries VALUES (?, ?, ?, ?, ?,?,? )'
 
 
 
@@ -251,14 +251,17 @@ def save_country(conn,country,info):
     capital = get_capital(info)
     coords = get_coords(info)
     flag = get_flag(country)
-    c.execute(sql,(country,name,capital,coords['lat'],coords['lon'],flag))
+    continent = 'Amérique du nord'
+    c.execute(sql,(country,name,capital,coords['lat'],coords['lon'],continent,flag))
     conn.commit()
     
 
 # premier test avec "jamaica"
     
-cn = get_info('jamaica')
-save_country(conn,'jamaica',cn)
+Jm = get_info('jamaica')
+save_country(conn,'jamaica',Jm)
+
+#faire la meme operation pour tout les pays du continents 
 
 north = ['canada','Antigua_and_Barbuda','barbados','belize','Costa_Rica','Cuba','dominica','Dominican_Republic','El_Salvador','Grenada','Guatemala','haiti','Honduras','jamaica','mexico','Nicaragua','panama','Saint_Kitts_and_Nevis','Saint_Lucia','Saint_Vincent_and_the_Grenadines','The_Bahamas','Trinidad_and_Tobago','United_States']
 
