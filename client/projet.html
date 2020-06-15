@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<title>Pays de l'Amérique du Nord.html</title>
+<script src="leaflet.js"></script>
+<link rel='stylesheet' type="text/css" href="style.css"/>
+<link rel="stylesheet" type="text/css" href="leaflet.css" /> 
+<meta charset='utf-8'>
+
+<body onload="load_data();">
+  <div class="bg"></div>
+  <div class="content">
+    <h1 href="index.html">Les pays de l'Amérique du Nord</h1>
+      <table>
+        <tr>
+          <td rowspan="2">
+            <div id="map" style="margin-bottom:1.5em"></div>
+          </td>
+          <td>
+            <p id="description">
+              <div id="nothing"></div>
+              <div id="country_data" hidden="true">
+			  <table>
+				<tr>
+				  <td rowspan="200">
+                <h2 id="wp"></h2>
+				  </td>
+				  <td height="2em">
+				<img id="drapeau" src="" height="75"></img>
+				  </td>
+				 
+				 </tr>
+			   </table>
+                <ul>
+                 <li id="capital"></li>	 
+		 <li id="latitude"></li>
+		 <li id="longitude"></li>
+		 <li id="Superficie"></li>
+		 <li id="Population"></li>
+                </ul>
+              </div>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+ </body>
+
+
+<script>
+var map = L.map('map').setView([20,-75], 3);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+function load_data () {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var data = JSON.parse(this.responseText);
+    for ( n = 0; n < data.length; n++ ) {
+      L.marker([data[n].lat,data[n].lon]).addTo(map).bindPopup(data[n].wp).addEventListener('click',OnMarkerClick).idnum = data[n].wp;
+    };
+  };
+  xhr.open('GET','/location',true);
+  xhr.send();
+};
+
+function OnMarkerClick (e) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var data = JSON.parse(this.responseText);
+    wp.innerHTML =  '<b><i>' + e.target.getPopup().getContent() + '</i></b><br>';
+    window.nothing.innerHTML = ''
+    window.country_data.style.display = 'block';
+    window.country_data.hidden.boolContent = false;
+    window.wp.textContent = data.wp;
+    window.name.textContent = 'Official name : ' + data.name;
+    window.capital.textContent = 'Capital : ' + data.capital;
+    window.latitude.textContent = 'Latitude : ' + data.latitude;
+    window.longitude.textContent = 'Longitude : ' + data.longitude;
+    window.Superficie.textContent = 'Superficie : ' + data.Superficie;
+    window.Population.textContent = 'Population : ' + data.Population;
+    document.getElementById("drapeau").src = "../flags1/"+data.drapeau;
+  };
+  var idnum = e.target.idnum;
+  xhr.open('GET','/description/'+idnum,true);
+  xhr.send();
+};
+</script>
+
