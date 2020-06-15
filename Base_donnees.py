@@ -233,6 +233,7 @@ conn = sqlite3.connect('countries.sqlite')
 
 def get_flag(pays):
     return pays+'.png'
+#cette colonne permet de recupérer plus facilement le nom de fichier png contenant le drapeau pour l'afficher.
 
 #ecriture dans la base de données :
     
