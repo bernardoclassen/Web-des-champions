@@ -131,10 +131,13 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     r = self.db_get_countries(continent)
 
     # on renvoie une liste de dictionnaires au format JSON
-    data = [ {k:a[k] for k in a.keys()} for a in r]
-    json_data = json.dumps(data, indent=4)
-    headers = [('Content-Type','application/json')]
-    self.send(json_data,headers)
+    if r == None:
+      self.send_error(404,'Country not found')
+    else: 
+      data = {k:r[k] for k in r.keys()}
+      json_data = json.dumps(data, indent=4)
+      headers = [('Content-Type','application/json')]
+      self.send(json_data,headers)
 
   def data_loc(self) :
       c = conn.cursor()
@@ -163,9 +166,11 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     return c.fetchone()
 
 
-
-conn = sqlite3.connect('pays1.sqlite') 
+# Ouverture d'une connexion avec la base de données
+conn = sqlite3.connect('countries.sqlite') 
+# Pour accéder au résultat des requêtes sous forme d'un dictionnaire
 conn.row_factory = sqlite3.Row
-
+#
+# Instanciation et lancement du serveur
 httpd = socketserver.TCPServer(("", 8080), RequestHandler)
 httpd.serve_forever()
