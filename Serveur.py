@@ -159,7 +159,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
           print(data)
       return data
 
-  def db_get_country(self,country):
+  def db_get_countries(self,country):
     c = conn.cursor()
     sql = 'SELECT * from countries WHERE wp=?'
     c.execute(sql,(country,))
