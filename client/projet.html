@@ -77,7 +77,7 @@ function OnMarkerClick (e) {
     window.longitude.textContent = 'Longitude : ' + data.longitude;
     window.Superficie.textContent = 'Superficie : ' + data.Superficie;
     window.Population.textContent = 'Population : ' + data.Population;
-    document.getElementById("drapeau").src = "../flags1/"+data.drapeau;
+    document.getElementById("drapeau").src = "../drapeaux/"+data.drapeau;
   };
   var idnum = e.target.idnum;
   xhr.open('GET','/description/'+idnum,true);
