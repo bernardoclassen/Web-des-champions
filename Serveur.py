@@ -34,7 +34,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
       
       # description
     elif self.path_info[0] == "description":
-      self.send_json_country(self.path_info[1])
+      self.send_json_countries(self.path_info[1])
       
       #service
     elif self.path_info[0] == "service":
@@ -78,26 +78,26 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
         http.server.SimpleHTTPRequestHandler.do_GET(self)
         
   def send_html(self,content):
-     headers = [('Content-Type','text/html;charset=utf-8')]
-     html = '<!DOCTYPE html><title>{}</title><meta charset="utf-8">{}'.format(self.path_info[0],content)
-     self.send(html,headers)
+    headers = [('Content-Type','text/html;charset=utf-8')]
+    html = '<!DOCTYPE html><title>{}</title><meta charset="utf-8">{}'.format(self.path_info[0],content)
+    self.send(html,headers)
       
   def send_json(self,data,headers=[]):
-     body = bytes(json.dumps(data),'utf-8') # encodage en json et UTF-8
-     self.send_response(200)
-     self.send_header('Content-Type','application/json')
-     self.send_header('Content-Length',int(len(body)))
-     [self.send_header(*t) for t in headers]
-     self.end_headers()
-     self.wfile.write(body)
+    body = bytes(json.dumps(data),'utf-8') # encodage en json et UTF-8
+    self.send_response(200)
+    self.send_header('Content-Type','application/json')
+    self.send_header('Content-Length',int(len(body)))
+    [self.send_header(*t) for t in headers]
+    self.end_headers()
+    self.wfile.write(body)
   
   def send(self,body,headers=[]):
-     encoded = bytes(body, 'UTF-8')
-     self.send_response(200)
-     [self.send_header(*t) for t in headers]
-     self.send_header('Content-Length',int(len(encoded)))
-     self.end_headers()
-     self.wfile.write(encoded)
+    encoded = bytes(body, 'UTF-8')
+    self.send_response(200)
+    [self.send_header(*t) for t in headers]
+    self.send_header('Content-Length',int(len(encoded)))
+    self.end_headers()
+    self.wfile.write(encoded)
   #     
   # on analyse la requête pour initialiser nos paramètres
   #
