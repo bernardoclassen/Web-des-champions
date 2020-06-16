@@ -1,0 +1,189 @@
+﻿.content {
+
+  position: fixed;
+
+  z-index: 2;
+
+  height: 100vh;
+
+  margin: 0;
+
+  border: None;
+
+  box-sizing: None;
+
+}
+
+
+
+.bg {
+
+  position: fixed;
+
+  left: 0;
+
+  right: 0;
+
+  z-index: 1;
+
+  display: block;
+
+  background-image: url(background.jpg);
+
+  background-position: center;
+
+  background-size: 100%;
+
+  background-repeat: no-repeat;
+
+  color: white;
+
+  height: 100vh;
+
+  margin: 0;
+
+  border: -10px solid transparent;
+
+  box-sizing: border-box;
+
+  transform: scale(1.1);
+
+}
+
+
+
+h1 {
+
+  color: rgba(255,255,255);
+
+  font-size: 300%;
+
+  text-shadow: 0px 0px 0px black; 
+
+  background-color: rgba(100,100,100,0.6);
+
+  margin-top: 0.25em;
+
+  margin-bottom: 0.25em;
+
+  padding-top: 0.1em;
+
+  padding-left: 2em;
+
+  padding-bottom: 0.1em;
+
+}
+
+
+
+h2 {
+
+  color: rgba(255,255,255);
+
+  font-size: 150%;
+
+  margin-top: 0.1em;
+
+  margin-bottom: 0.1em;
+
+  padding-top: 0.1em;
+
+  padding-left: 0em;
+
+  padding-bottom: 0.1em;
+
+}
+
+
+
+
+
+#country_data {
+
+  color: rgba(255,255,255);
+
+  line-height: 1.5em;
+
+  font-size: 150%;
+
+  border: none;
+
+  box-shadow: 10px 10px 10px black;
+
+  background-color: rgba(100,100,100,0.6);
+
+  box-shadow: 8px 8px 4px rgba(16,8,0);
+
+  border-top: 3px solid rgba(252,255,53);
+
+  border-bottom: 3px solid rgba(252,255,53);
+
+  border-left: 3px solid rgba(252,255,53);
+
+  border-right: 3px solid rgba(252,255,53);
+
+  margin-top: 1.33em;
+
+  margin-left: 1.5em;
+
+  margin-bottom: 1.33em;
+
+  padding-top: 0.5em;
+
+  padding-left: 1.5em;
+
+  padding-bottom: 0.5em;
+
+  
+
+}
+
+
+
+#top_name {
+
+	height: 2em;
+
+}
+
+
+
+body {font-family: Rockwell Condensed, sans-serif;}
+
+
+
+label {display: block;}
+
+label span {display: inline-block; width: 5em; height: 1.5em;}
+
+
+
+td {height: 0px; width: 700px;}
+
+
+
+#drapeau {
+
+	margin-left: 1px;
+
+}
+
+
+
+#map {
+
+  height: 550px;
+
+  width: 1000px;
+
+  box-shadow: 8px 8px 4px rgba(16,8,0);
+
+  border-top: 3px solid rgba(252,255,53);
+
+  border-bottom: 3px solid rgba(252,255,53);
+
+  border-left: 3px solid rgba(252,255,53);
+
+  border-right: 3px solid rgba(252,255,53);
+
+}
